@@ -44,15 +44,20 @@ class GroceryCard extends StatelessWidget {
           ),
         ),
 
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Text(
-            "₹${item.price} | ⭐ ${item.rating} | ${item.delivery}",
-            style: TextStyle(
-              color: Colors.grey.shade700,
-              fontSize: 14,
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(item.category),
+
+            const SizedBox(height: 4),
+
+            Text(
+              "₹${item.price} | ⭐ ${item.rating} | ${item.delivery}",
+              style: TextStyle(
+                color: Colors.grey.shade700,
+              ),
             ),
-          ),
+          ],
         ),
 
         trailing: const Icon(
