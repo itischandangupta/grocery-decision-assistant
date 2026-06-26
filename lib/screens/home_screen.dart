@@ -1,5 +1,7 @@
-import '../data/dummy_data.dart';
 import 'package:flutter/material.dart';
+
+import '../data/dummy_data.dart';
+import 'result_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,19 +12,45 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Grocery Decision Assistant"),
       ),
-      body: ListView.builder(
-        itemCount: groceryItems.length,
-        itemBuilder: (context, index) {
 
-          final item = groceryItems[index];
+      body: Column(
+        children: [
 
-          return ListTile(
-            title: Text(item.app),
-            subtitle: Text(
-              "₹${item.price} | Rating ${item.rating} | ${item.delivery}",
+          Expanded(
+            child: ListView.builder(
+              itemCount: groceryItems.length,
+              itemBuilder: (context, index) {
+
+                final item = groceryItems[index];
+
+                return ListTile(
+                  title: Text(item.app),
+                  subtitle: Text(
+                    "₹${item.price} | ⭐ ${item.rating} | ${item.delivery}",
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const ResultScreen(),
+                    ),
+                  );
+                },
+                child: const Text("Compare"),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
