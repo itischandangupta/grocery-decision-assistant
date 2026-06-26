@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import '../widgets/grocery_card.dart';
 import '../data/dummy_data.dart';
 import 'result_screen.dart';
+import '../widgets/compare_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,8 +11,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Grocery Decision Assistant"),
+        title: const Text(
+          "Grocery Decision Assistant",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.deepPurple,
+        centerTitle: true,
+        elevation: 0,
       ),
+      backgroundColor: Colors.grey.shade100,
 
       body: Column(
         children: [
@@ -23,21 +34,16 @@ class HomeScreen extends StatelessWidget {
 
                 final item = groceryItems[index];
 
-                return ListTile(
-                  title: Text(item.app),
-                  subtitle: Text(
-                    "₹${item.price} | ⭐ ${item.rating} | ${item.delivery}",
-                  ),
-                );
+                return GroceryCard(item: item);
               },
             ),
           ),
 
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: CompareButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -46,7 +52,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text("Compare"),
               ),
             ),
           ),
